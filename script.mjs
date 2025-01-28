@@ -7,12 +7,14 @@ class HashMap {
     this.capacity = 16;
   }
 
+  // This method ensures that the hash code is a valid index;
   validateIndex = (index) => {
     if (index < 0 || index >= this.capacity) {
       throw new Error("Trying to access bucket out of bounds");
     }
   };
 
+  // This method hashes the key;
   hash = (key) => {
     if (key) {
       let hashCode = 0;
@@ -25,12 +27,14 @@ class HashMap {
     } else console.error("ERROR: NO KEY GIVEN!");
   };
 
+  // This function checks whether the proportion of entries to buckets in the hash map has reached the load factor;
   isFullLoad = () => {
     const loadFactor = 0.75;
     const load = this.length() / this.capacity;
     return load > loadFactor;
   };
 
+  // This function increases the number of buckets in the hash map;
   growMap = () => {
     const newMap = [];
     this.capacity = this.capacity * 2;
@@ -88,7 +92,6 @@ class HashMap {
   };
 
   values = () => {
-    this.clear;
     return this.hashMap.reduce(
       (values, bucket) => [...values, ...bucket.values()],
       []
@@ -110,6 +113,6 @@ class HashMap {
   };
 }
 
-// Main
 const test = new HashMap();
 test.set("Ngoni", "Loves coding!");
+test.get("Ngoni"); // Loves coding!
